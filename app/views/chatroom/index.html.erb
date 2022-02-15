@@ -17,11 +17,10 @@
 
       <div class="extra content" id="input-content">
       
-        <%= form_for(@message, html: { class: "ui reply form", role: "form" }, url: message_path, remote: true ) do |form|  %>
+        <%= form_for(@message, html: { class: "ui reply form", role: "form", autocomplete: "off" }, url: message_path, remote: true ) do |form|  %>
           <div class="field">
             <div class="ui icon input">
               <%= form.text_field :body, placeholder: "Enter a message...", id: "input-message" %>
-              <%= form.button '<i class="bordered inverted orange icon location arrow"></i>'.html_safe %>
             </div>
           </div>
         <% end %>

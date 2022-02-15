@@ -13,10 +13,37 @@ Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
-$(document).on('turbolinks:load', function() {
+document.addEventListener('turbolinks:load', function() {
+
   $('.ui.dropdown').dropdown();
 
-  $('.message .close').on('click', function() {
-    $(this).closest('.message').transition('fade');
-  });
+  let closeMessage = document.querySelector('.message .close');
+  if ( closeMessage ) {
+    closeMessage.addEventListener('click', function ( e ) {
+      e.target.closest('.message').classList.add('transition', 'hidden');
+    });
+  }
+
+  scrollBottomMessages();
+
+  let input = document.querySelector('#input-message');
+  if ( input ) {
+    createOnSubmitListener(input)
+  }
+
 });
+
+function createOnSubmitListener(inputField) {
+  inputField.addEventListener('keyup', function (e) {
+    if ( e.keyCode == 13 ) {
+      e.target.value = '';
+    }
+  });
+}
+
+export function scrollBottomMessages() {
+  let scrollContainer = document.querySelector('#messages');
+  if (scrollContainer) {
+    scrollContainer.scrollTop = scrollContainer.scrollHeight - scrollContainer.clientHeight;
+  }
+}

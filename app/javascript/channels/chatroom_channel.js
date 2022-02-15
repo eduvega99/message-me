@@ -1,4 +1,5 @@
 import consumer from "./consumer"
+import { scrollBottomMessages } from "../packs/application"
 
 consumer.subscriptions.create("ChatroomChannel", {
   connected() {
@@ -10,10 +11,8 @@ consumer.subscriptions.create("ChatroomChannel", {
   },
 
   received(data) {
-    var scrollContainer = document.querySelector('#messages');
     var messageContainer = document.querySelector('#message-container');
-    
     messageContainer.innerHTML += (data['mod_message']);
-    scrollContainer.scrollTop = scrollContainer.scrollHeight - scrollContainer.clientHeight;
+    scrollBottomMessages();
   }
 });
