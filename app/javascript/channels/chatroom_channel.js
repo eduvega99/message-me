@@ -10,7 +10,10 @@ consumer.subscriptions.create("ChatroomChannel", {
   },
 
   received(data) {
+    var scrollContainer = document.querySelector('#messages');
     var messageContainer = document.querySelector('#message-container');
+    
     messageContainer.innerHTML += (data['mod_message']);
+    scrollContainer.scrollTop = scrollContainer.scrollHeight - scrollContainer.clientHeight;
   }
 });

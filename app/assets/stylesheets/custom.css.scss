@@ -3,3 +3,11 @@
 .chatbox {
     height: 68vh;
 }
+
+#messages {
+    overflow-y: auto;
+}
+
+#input-content {
+    min-height: unset !important;
+}
